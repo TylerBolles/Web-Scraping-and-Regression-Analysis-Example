@@ -7,8 +7,8 @@ from urllib.error import HTTPError
 def scrape_data(url):
 	""" scrape_data obtains data from the only table in each webpage of the form 
 	    'http://www.boxofficeguru.com/[Letter][Number].htm where 
-		Letter and Number are variables. The table (pandas dataframe) containing
-		data from all urls with a valid Number is returned. """
+	    Letter and Number are variables. The table (pandas dataframe) containing
+	    data from all urls with a valid Number is returned. """
 	table = pd.read_html(url, header = 0)[0]
 	i = 1
 	valid_url = True
@@ -16,8 +16,7 @@ def scrape_data(url):
 	while valid_url:
 		i += 1
 		try: 
-			table = table.append(pd.read_html(url.replace('.h', str(i)+'.h'),
-											  header=0)[0])
+			table = table.append(pd.read_html(url.replace('.h', str(i)+'.h'), header=0)[0])
 		except HTTPError:
 			valid_url = False
 			
