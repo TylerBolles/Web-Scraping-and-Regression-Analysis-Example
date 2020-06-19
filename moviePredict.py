@@ -1,5 +1,5 @@
 """ moviePredict.py estimates the total return of a movie using linear regression 
-	and	plots the results. The .csv files produced by makeData.py must be in the
+	and plots the results. The .csv files produced by makeData.py must be in the
 	same directoy in order for moviePredict to run. """
 import pandas as pd
 import numpy as np
@@ -97,7 +97,7 @@ make_plots(yH, train_df, 4)
 test_df = transform_data('TestingData.csv') # data frame
 test_dm = dmatrix(model, test_df, return_type = 'dataframe') # design matrix
 y = test_df['LogTotal']
-# we must enforce the design matrix for the testing data has the same
+# we must enforce that the design matrix for the testing data has the same
 # number of columns as that of the training data appearing in the same order. 
 # these can be different due to the encoding of the Distributor variable.
 # an example name of these columns is 'Distributor[T.After Dark]'
@@ -106,7 +106,7 @@ for col in list(test_dm):
 	if 'Distributor' in col:
 		test_dm.drop(col, axis = 1, inplace = True)
 
-for i, col in  enumerate(list(train_dm)):
+for i, col in enumerate(list(train_dm)):
 	if 'Distributor' in col:
 		test_dm.insert(i, col, train_dm[col])
 
